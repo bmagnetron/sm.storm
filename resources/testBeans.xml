@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+	
+
+	
+	<bean id="values" class="org.apache.storm.tuple.Values" scope="prototype">
+		<constructor-arg ref="url" />
+		<aop:scoped-proxy proxy-target-class="true"/>
+	</bean>
+
+	
+	<bean id="url" class="java.lang.String">
+		<constructor-arg>
+			<value>
+		 	<![CDATA[http://finance.google.com/finance/info?client=ig&q=NSE:INFY]]>
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	
+	
+	<bean id="testvalues" class ="com.storm.junit.testvalues">
+		<property name="values" ref="values"> </property>
+	</bean>
+	
+</beans>
